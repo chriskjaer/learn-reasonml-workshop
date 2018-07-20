@@ -6,8 +6,8 @@
   This function is the same as the List.append function.
  */
 let () = {
-  assert ([5, 1] @ [8, 4] == [5, 1, 8, 4]);
-  assert (List.append([5, 1], [8, 4]) == [5, 1, 8, 4]);
+  assert([5, 1] @ [8, 4] == [5, 1, 8, 4]);
+  assert(List.append([5, 1], [8, 4]) == [5, 1, 8, 4]);
 };
 
 /*
@@ -16,7 +16,8 @@ let () = {
 
   let range: (int, int) => list(int)
  */
-let range = (from, to_) => failwith("For you to implement");
+
+let rec range = (from, to_) => from == to_ ? [] : [from] @ range(from + 1, to_);
 
 Test.runAll([
   (range(1, 4) == [1, 2, 3], "range"),

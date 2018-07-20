@@ -7,7 +7,7 @@ let add = (x, y) => x + y;
 
 /* You can order function invocations with parentheses or let bindings */
 /* Parens */
-let () = Js.log("(5^2)/2 = " ++ string_of_int(half(square(5))));
+let () = Js.log("(5^2)/2 = " ++ (5 |> square |> half |> string_of_int));
 
 /* Let bindings */
 let () = {
@@ -18,9 +18,6 @@ let () = {
 };
 
 /* Try to write [average] by reusing [add] and [half] */
-let average = (x, y) => failwith("For you to implement");
+let average = (x, y) => add(x, y) |> half;
 
-Test.runAll([
-  (average(5, 5) == 5, "average"),
-  (average(50, 100) == 75, "average"),
-]);
+Test.runAll([(average(5, 5) == 5, "average"), (average(50, 100) == 75, "average")]);
